@@ -1,0 +1,85 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Main {
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    ArrayList<Vehicle> vehicles = new ArrayList<>();
+    while (true) {
+    	System.out.println("\nDaftar Kendaraan:");
+		System.out.println("No.\tTipe\t\t\tNama");
+		for (int i = 0; i < vehicles.size(); i++) {
+			System.out.println((i + 1) + "\t" + vehicles.get(i).getType() + "\t\t\t" + vehicles.get(i).getName());
+		}
+      System.out.println("\nPilihan:");
+      System.out.println("1. Input kendaraan");
+      System.out.println("2. Lihat informasi kendaraan");
+      System.out.println("3. Keluar");
+      System.out.print("Masukkan pilihan Anda: ");
+      int choice = sc.nextInt();
+      sc.nextLine();
+
+      if (choice == 1) {
+        System.out.print("Masukkan tipe kendaraan (Car / Motorcycle): ");
+        String type = sc.nextLine();
+        System.out.print("Masukkan brand: ");
+        String brand = sc.nextLine();
+        System.out.print("Masukkan name: ");
+        String name = sc.nextLine();
+        System.out.print("Masukkan license number (A-Z space 1-4 digit angka space 1-3 digit huruf kapital): ");
+        String licenseNumber = sc.nextLine();
+        System.out.print("Masukkan top speed (100-250): ");
+        int topSpeed = sc.nextInt();
+        System.out.print("Masukkan gas capacity (30-60): ");
+        int gasCap = sc.nextInt();
+        int wheel = 0;
+        int entertainmentSystem = 0;
+        int helm = 0;
+        String vehicleType = "";
+        if (type.equalsIgnoreCase("Car")) {
+          System.out.print("Masukkan jenis tipe kendaraan (SUV, Supercar, Minivan): ");
+          vehicleType = sc.next();
+          System.out.print("Masukkan jumlah entertainment system (minimal 1): ");
+          entertainmentSystem = sc.nextInt();
+          wheel = 4;
+        } else if (type.equalsIgnoreCase("Motorcycle")) {
+          System.out.print("Masukkan jenis tipe kendaraan (Automatic, Manual): ");
+          vehicleType = sc.next();
+          System.out.print("Masukkan jumlah helm (minimal 1): ");
+          helm = sc.nextInt();
+          wheel = 2;
+        }
+        vehicles.add(new Vehicle(type, brand, name, licenseNumber, topSpeed, gasCap, wheel,vehicleType, entertainmentSystem, helm));
+        System.out.println("Kendaraan berhasil ditambahkan!");
+      	} 
+      else if (choice == 2) {
+        System.out.println("\nDaftar Kendaraan:");
+        System.out.println("No.\tTipe\t\t\tNama");
+        for (int i = 0; i < vehicles.size(); i++) {
+          System.out.println((i + 1) + "\t" + vehicles.get(i).getType() + "\t\t\t" + vehicles.get(i).getName());
+        }
+        System.out.print("Masukkan nomor kendaraan yang ingin dilihat informasinya: ");
+        int vehicleNumber = sc.nextInt();
+        Vehicle vehicle = vehicles.get(vehicleNumber - 1);
+        System.out.println("Tipe Kendaraan: " + vehicle.getType());
+        System.out.println("Brand: " + vehicle.getBrand());
+        System.out.println("Name: " + vehicle.getName());
+        System.out.println("License Number: " + vehicle.getLicenseNumber());
+        System.out.println("Top Speed: " + vehicle.getTopSpeed());
+        System.out.println("Gas Capacity: " + vehicle.getGasCap());
+        System.out.println("Wheel: " + vehicle.getWheel());
+        System.out.println("Jenis Tipe Kendaraan: " + vehicle.getVehicleType());
+        System.out.println("Entertainment System: " + vehicle.getEntertainmentSystem());
+        System.out.println("Helm: " + vehicle.getHelm());
+        System.out.println("Turning on the entertainment system...\n");
+		    } 
+       else if (choice == 3) {
+			   break;
+				} 
+		    else {
+			    System.out.println("Pilihan tidak valid, silakan masukkan kembali.");
+		    }
+	    }
+	  System.out.println("Terima kasih telah menggunakan program ini!");
+    }
+  }
